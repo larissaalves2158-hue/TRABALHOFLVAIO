@@ -9,13 +9,28 @@ from .models import Album
 def api_albuns(request):
     if request.method == "POST":
         dados = json.loads(request.body)
+        ano = dados["ano"]
+        avaliacao = dados["avaliacao"]
+
+        if ano < 1900 or ano > 2026:
+            return JsonResponse(
+                {"erro": "O ano deve estar entre 1900 e 2026"},
+                status=400
+            )
+
+        if avaliacao < 0 or avaliacao > 10:
+            return JsonResponse(
+                {"erro": "A avaliação deve estar entre 0 e 10"},
+                status=400
+            )
+
         albuns = Album.objects.create(
             titulo=dados["titulo"],
             artista=dados["artista"],
             ano=dados["ano"],
             avaliacao=dados["avaliacao"],
         )
-        return  JsonResponse({"id":album.id}, status=201)
+        return  JsonResponse({"id":albuns.id}, status=201)
 
     albuns = list(Album.objects.values())
     return JsonResponse(albuns, safe=False)
