@@ -1,0 +1,25 @@
+:root {
+  font-family:Inter,'Segoe UI',Arial,sans-serif; font-synthesis:none; text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased; background:#080a0f; color:#f6f7f9
+}
+* {
+  box-sizing:border-box
+}
+html {
+  scroll-behavior:smooth
+}
+body {
+  margin:0; min-width:320px
+}
+button,input {
+  font:inherit
+}
+a {
+  color:inherit; text-decoration:none
+}
+button {
+  cursor:pointer
+}
+input:focus-visible,button:focus-visible,a:focus-visible {
+  outline:2px solid #c8ff5c; outline-offset:3px
+}
