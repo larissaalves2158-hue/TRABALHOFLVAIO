@@ -34,3 +34,27 @@ def api_albuns(request):
 
     albuns = list(Album.objects.values())
     return JsonResponse(albuns, safe=False)
+
+def api_resumo(request):
+    albuns = list(Album.objects.all())
+
+    total = len(albuns)
+
+    if total > 0:
+        media_avaliacao = round(
+            sum(album.avaliacao for album in albuns) / total, 2
+        )
+
+        melhor = max(
+            albuns,
+            key=lambda album: album.avaliacao
+        ).titulo
+    else:
+        media_avaliacao = 0.00
+        melhor = None
+
+    return JsonResponse({
+        "total": total,
+        "media_avaliacao": media_avaliacao,
+        "melhor": melhor
+    })

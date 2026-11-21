@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from albuns.views import  api_albuns
+from albuns.views import api_albuns, api_resumo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/albuns/", api_albuns),
+    path('api/albuns/', api_albuns),
+    path('api/albuns/resumo/', api_resumo),
 ]
